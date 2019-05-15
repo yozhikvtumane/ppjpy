@@ -13,16 +13,22 @@ combs = {
     "6" : "Sixes",
 }
 
-throw = rnd.randint(1, 6+1, 5)
+# throw = rnd.randint(1, 6+1, 5)
+throw = np.array([1,1,1,1,1])
 print(throw)
 for i in range (1,7):
+    print(np.count_nonzero(throw == i))
     res[i] = np.count_nonzero(throw == i)
-
+print(res)
 for i in res.keys():
     if res[i] > 0:
-        print("%s : %s %s+%s" % (combs[str(i)], i * res[i] , [z for z in throw if z == i] , [z for z in throw if z != i]))
+        print("%s : %s %s + %s" % (combs[str(i)], i * res[i] , [z for z in throw if z == i] , [z for z in throw if z != i]))
     if res[i] == 3:
-        print(("Three of a kind : %s %s+%s" % (np.sum(throw) , [z for z in throw if z == i] , [z for z in throw if z != i])))
+        print(("Three of a kind : %s %s + %s" % (np.sum(throw) , [z for z in throw if z == i] , [z for z in throw if z != i])))
     if res[i] == 4:
-        print(("Four of a kind : %s %s+%s" % (np.sum(throw) , [z for z in throw if z == i] , [z for z in throw if z != i])))
+        print(("Four of a kind : %s %s + %s" % (np.sum(throw) , [z for z in throw if z == i] , [z for z in throw if z != i])))
+    if res[i] == 5:
+        print("Yahtzee! : 50 %s + []" % throw)
+
+print("Chance : %s %s + []" %(np.sum(throw), [z for z in throw]))
         
